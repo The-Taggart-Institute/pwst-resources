@@ -25,21 +25,29 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 ~/.cargo/bin/cargo install feroxbuster
 
 # Setup fonts and Seclists
+echo "Creating Scripts folder"
 mkdir ~/Scripts
 cd ~/Scripts
+echo "Downloading SecLists"
 git clone https://github.com/danielmiessler/SecLists
-git clone https://github.com/powerline/fonts
-cd fonts
-chmod +x install.sh
-./install.sh
-cd ~
+echo "Downloading NerdFont"
+wget -O ~/tmp/scp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/SourceCodePro.zip
+echo "Installing NerdFont"
+mkdir /tmp/scp
+unzip /tmp/scp.zip -d /tmp/scp '*.ttf'
+sudo mkdir /usr/share/fonts/saucecode-pro
+sudo mv /tmp/*.ttf /usr/share/fonts/saucecode-pro
+rm -rf /tmp/scp
+sudo fc-cache -s -f
 
 # Setup Terminator
+echo "Setting up Terminator"
 mkdir ~/.config/terminator
 cp ./terminatorconfig ~/.config/terminator/config
 
 # Setup Shell
 # Installing Starship
+echo "Setting up shell"
 curl -sS https://starship.rs/install.sh | sh
 if [ ! -d ~/.config/fish ]; then
 	mkdir ~/.config/fish/
