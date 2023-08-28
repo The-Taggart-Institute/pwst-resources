@@ -14,7 +14,7 @@
 [profiles]
   [[default]]
     background_darkness = 0.8
-    font = Source Code Pro for Powerline 11
+    font = SauceCodePro Nerd Font 11
     background_type = transparent
     cursor_color = "#aaaaaa"
     scrollbar_position = hidden
