@@ -27,11 +27,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 # Setup fonts and Seclists
 echo "Creating Scripts folder"
 mkdir ~/Scripts
-cd ~/Scripts
 echo "Downloading SecLists"
-git clone https://github.com/danielmiessler/SecLists
+git clone https://github.com/danielmiessler/SecLists ~/Scripts/SecLists
 echo "Downloading NerdFont"
-wget -O ~/tmp/scp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/SourceCodePro.zip
+wget -O /tmp/scp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/SourceCodePro.zip
 echo "Installing NerdFont"
 unzip /tmp/scp.zip -d /tmp/scp '*.ttf'
 sudo mkdir /usr/share/fonts/saucecode-pro
