@@ -55,6 +55,7 @@ fi
 cp ./starship.toml ~/.config/starship.toml
 
 # Add Fish files
+mkdir ~/.config/fish
 cp ./config.fish ~/.config/fish/
 cp ./fish_variables ~/.config/fish/
 
