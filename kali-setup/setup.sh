@@ -3,7 +3,7 @@
 # Add Brave Browser Sources
 # Brave Browser
 echo "Installing Vivaldi"
-wget -O /tmp/vivaldi.deb 'https://downloads.vivaldi.com/stable/vivaldi-stable_6.1.3035.302-1_amd64.deb'
+wget -O /tmp/vivaldi.deb 'https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.43-1_amd64.deb'
 sudo dpkg -i /tmp/vivaldi.deb
 rm /tmp/vivaldi.deb
 
