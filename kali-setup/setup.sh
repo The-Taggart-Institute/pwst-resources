@@ -5,6 +5,7 @@
 echo "Installing Vivaldi"
 wget -O /tmp/vivaldi.deb 'https://downloads.vivaldi.com/stable/vivaldi-stable_6.2.3105.43-1_amd64.deb'
 sudo dpkg -i /tmp/vivaldi.deb
+sudo apt --fix-broken install
 rm /tmp/vivaldi.deb
 
 # Update and add necessary packages
