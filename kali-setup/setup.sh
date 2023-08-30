@@ -10,7 +10,7 @@ rm /tmp/vivaldi.deb
 # Update and add necessary packages
 echo "Installing Packages"
 sudo apt update
-sudo apt install -y fish terminator gedit python3-pip vim-gtk3 zaproxy vivaldi vivaldi-stable
+sudo apt install -y fish terminator gedit python3-pip vim-gtk3 zaproxy vivaldi-stable
 
 # Install VSCode
 echo "Installing VSCode"
