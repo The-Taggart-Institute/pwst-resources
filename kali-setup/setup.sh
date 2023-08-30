@@ -34,7 +34,7 @@ wget -O /tmp/scp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v
 echo "Installing NerdFont"
 unzip /tmp/scp.zip -d /tmp/scp '*.ttf'
 sudo mkdir /usr/share/fonts/saucecode-pro
-sudo mv /tmp/*.ttf /usr/share/fonts/saucecode-pro
+sudo mv /tmp/scp/*.ttf /usr/share/fonts/saucecode-pro
 rm -rf /tmp/scp
 sudo fc-cache -s -f
 
