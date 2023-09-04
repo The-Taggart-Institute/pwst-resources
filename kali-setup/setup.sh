@@ -14,7 +14,7 @@ sudo apt install -y fish terminator alacritty gedit python3-pip vim-gtk3 zaproxy
 
 # Install VSCode
 echo "Installing VSCode"
-wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" -O /tmp/code.deb
+wget -O /tmp/code.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
 sudo dpkg -i /tmp/code.deb
 rm /tmp/code.deb
 
