@@ -1,34 +1,66 @@
+import { Application, Router, Context, BodyOptions } from "https://deno.land/x/oak/mod.ts";
+import users from "./users.json" assert {type: "json"} ;
+
 const PORT = 8003;
-const server = Deno.listen({ port: PORT });
-console.log(`Listening on ${PORT}`);
 
-// Connections to the server will be yielded up as an async iterable.
-for await (const conn of server) {
-  // In order to not be blocking, we need to handle each connection individually
-  // without awaiting the function
-  serveHttp(conn);
-}
+const router = new Router();
 
-async function serveHttp(conn: Deno.Conn) {
-  // This "upgrades" a network connection into an HTTP connection.
-  const httpConn = Deno.serveHttp(conn);
-  // Each request sent over the HTTP connection will be yielded as an async
-  // iterator from the HTTP connection.
-  for await (const requestEvent of httpConn) {
-    // The native HTTP server uses the web standard `Request` and `Response`
-    // objects.
-    const userAgent = requestEvent.request.headers.get("user-agent");
-
+router
+  .get("/", (ctx: Context ) => {
+    
+    const userAgent = ctx.request.headers.get("user-agent");
+    
     if (userAgent === "PWST") {
-      requestEvent.respondWith(
-        new Response("Hello, PWST Student!")
-      );
+      ctx.response.body = "Hello, PWST Student!";
+      ctx.response.status = 200;
     } else {
-      requestEvent.respondWith(
-        new Response("I don't know you!", {
-          status: 401
-        })
-      )
+      ctx.response.body = "I don't know you!";
+      ctx.response.status = 401
     }
-  }
-}
+    
+  })
+  .get("/flag", (ctx) => {
+    const srcIp = ctx.request.headers.get("x-forwarded-for") || ctx.request.ip;
+    ctx.response.type = "application/json";
+    
+    if (srcIp === "1.2.3.4") {
+      ctx.response.body = {
+        message: "Great work! FLAG{test_all_the_headers}"
+      }
+    } else {
+      ctx.response.body = {
+        message: "Only accepting requests from 1.2.3.4"
+      }
+    }
+  })
+  .post("/users/:id", async (ctx) => {
+    interface requestBody {
+      role: string
+    }
+
+    const body: requestBody = await ctx.request.body({ type: "json" }).value;
+    if (!body || ! body.role) {
+      ctx.response.body = {
+        error: "No role provided"
+      };
+      ctx.response.status = 406;
+      return;
+    }
+    const userId = ctx.params.id;
+    const foundUser = users.find(u => u.id === parseInt(userId));
+    ctx.response.type = "application/json";
+    if (foundUser) {
+      if (body.role === "admin") {
+        ctx.response.body = foundUser;
+      } else {
+        ctx.response.body = { id: foundUser.id, username: foundUser.username };
+      }
+    }    
+  });
+
+const app = new Application();
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+app.listen({ port: PORT});
+console.log(`Listening on ${PORT}`);

@@ -1,0 +1,10 @@
+version: "3.9"
+    
+services:
+  pwst_10_3_api:
+    image: pwst_10_2_api
+    build:
+        context: .
+    ports:
+      - "8003:8003"
+    restart: always

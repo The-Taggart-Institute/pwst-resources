@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "username": "john_doe82",
+        "password": "SecureP@ss1"
+    },
+    {
+        "id": 2,
+        "username": "sarah_smith",
+        "password": "P@ssw0rd123"
+    },
+    {
+        "id": 3,
+        "username": "mike_jackson",
+        "password": "StrongPass#45"
+    },
+    {
+        "id": 4,
+        "username": "emily_jones",
+        "password": "Secret123!"
+    },
+    {
+        "id": 5,
+        "username": "david_wilson",
+        "password": "RandomPass$7"
+    },
+    {
+        "id": 99,
+        "username": "FLAG",
+        "password": "fuzz_everything"
+    }
+]
