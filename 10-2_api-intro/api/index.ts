@@ -38,12 +38,12 @@ router
     const userAgent = ctx.request.headers.get("user-agent");
     if (userAgent && userAgent.indexOf("feroxbuster") >= 0) {
       ctx.response.body = {
-        flag: "FLAG{crab_walk_the_api}"
+        message: "Get lost, crab!"
       }
       ctx.response.status = 200;
     } else {
       ctx.response.body = {
-        message: "I await carcinization"
+        flag: "FLAG{crab_walk_the_api}"
       }
       ctx.response.status = 401;
     }
