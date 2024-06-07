@@ -39,7 +39,7 @@ services:
         apk --no-cache add wget unzip &&
         cd /wordpress_data/wp-content/themes &&
         wget -qO- https://downloads.wordpress.org/theme/twentytwentyone.2.2.zip | unzip -q - &&
-        chown -R 33:33 /wordpress_data/wp-content/themes
+        chown -R www-data:www-data /wordpress_data/wp-content/themes
       "
 
 volumes:
