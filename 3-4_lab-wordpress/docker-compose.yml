@@ -15,7 +15,6 @@ services:
   wordpress:
     depends_on:
       - db
-      - theme-downloader
     image: pwst_wordpress
     build:
         context: .
@@ -35,7 +34,7 @@ services:
     image: alpine
     volumes:
       - wordpress_data:/wordpress_data
-    command: >
+    entrypoint: >
       sh -c "
         apk --no-cache add wget unzip &&
         cd /wordpress_data/wp-content/themes &&
