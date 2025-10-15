@@ -1,5 +1,5 @@
 import { Application, Router, Context, BodyOptions } from "https://deno.land/x/oak/mod.ts";
-import users from "./users.json" assert {type: "json"} ;
+import users from "./users.json" with {type: "json"} ;
 
 const PORT = 8003;
 
@@ -53,7 +53,8 @@ router
       role: string
     }
 
-    const body: requestBody = await ctx.request.body({ type: "json" }).value;
+    const body: requestBody = await ctx.request.body.json();
+
     if (!body || ! body.role) {
       ctx.response.body = {
         error: "No role provided"
